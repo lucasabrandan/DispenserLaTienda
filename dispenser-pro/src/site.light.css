@@ -1,15 +1,16 @@
-/* ====== Dispenser La Tienda — Site (refactor) ======
-   Objetivo: archivo ordenado, consistente y accesible.
-   Notas: mantuve las clases usadas en los componentes React; añadí
-   estados de foco y pequeños ajustes visuales para transmitir confianza.
+/* ====== Dispenser La Tienda — Site (refactor V3 - Cambio de Paleta a Naranja) ======
+    Objetivo: Invertir el color principal. Naranja/Amarillo (#FF7B03) es la nueva marca.
+    Cian (#11A1B9) se mantiene para fondos sutiles y simbolismo de agua.
 */
 
 :root {
   /* Brand / palette */
-  --brand: #11A1B9;
-  --brand-600: #0e8ea3;
-  --brand-700: #0b6b7a;
-  --success: #0f766e;
+  --brand: #FF7B03; /* ¡Naranja Cálido/Amarillo Fuerte como color principal! */
+  --brand-600: #e36a00; /* Tono de hover */
+  --brand-700: #a84f00;
+  
+  --secondary-cian: #11A1B9; /* Cian para limpieza/agua/fondo sutil */
+  --success: #0f766e; /* Verde para éxito/ahorro */
 
   /* Neutrals */
   --bg: #f6f7f8;
@@ -19,8 +20,8 @@
   --text: #0f172a;
 
   /* Elevation */
-  --shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05); /* Sombra más sutil */
+  --shadow-md: 0 16px 36px rgba(15, 23, 42, 0.08); /* Sombra más profunda */
 }
 
 /* ===== Base / Typography ===== */
@@ -100,9 +101,9 @@ a {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(246, 247, 248, 0.92);
-  backdrop-filter: saturate(160%) blur(10px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+  background: rgba(246, 247, 248, 0.96); /* Un poco más opaco */
+  backdrop-filter: saturate(180%) blur(12px); /* Blur sutil */
+  border-bottom: 1px solid rgba(229, 231, 235, 0.7);
 }
 .site-header .inner {
   max-width: 1180px;
@@ -131,7 +132,7 @@ a {
 }
 .nav {
   display: none;
-  gap: 14px;
+  gap: 18px; /* Más espacio */
 }
 @media (min-width: 768px) {
   .nav {
@@ -139,15 +140,15 @@ a {
   }
 }
 .nav a {
-  font-size: 14px;
+  font-size: 15px; /* Ligeramente más grande */
   color: var(--text);
-  opacity: 0.82;
-  transition: 0.2s ease;
+  opacity: 0.88;
+  transition: all 0.2s ease-in-out; /* Transición más completa */
 }
 .nav a:hover,
 .nav a:focus {
   opacity: 1;
-  color: var(--brand);
+  color: var(--brand); /* ¡NAVEGACIÓN ACTIVA EN NARANJA! */
 }
 
 /* Focus styles for keyboard users */
@@ -156,21 +157,24 @@ a {
 }
 a:focus-visible,
 .btn:focus-visible,
-.accordion-head:focus-visible {
-  outline: 3px solid rgba(17, 161, 185, 0.18);
+.accordion-head:focus-visible,
+.input:focus-visible {
+  outline: 3px solid rgba(255, 123, 3, 0.3); /* ¡FOCO VISIBLE NARANJA! */
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: 12px;
+  transition: all 0.15s ease;
 }
 
 /* ===== Buttons ===== */
 .btn {
-  padding: 9px 14px;
+  padding: 10px 16px; /* Más padding */
   border-radius: 14px;
-  border: 1px solid rgba(17, 161, 185, 0.08);
+  /* El botón secundario usa un borde sutil de la paleta azul original */
+  border: 1px solid rgba(17, 161, 185, 0.12);
   background: var(--surface);
   color: var(--text);
-  font-weight: 500;
-  transition: transform 0.06s ease, box-shadow 0.12s ease, background 0.12s ease;
+  font-weight: 600; /* Más peso */
+  transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background 0.2s ease;
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   display: inline-flex;
@@ -178,61 +182,66 @@ a:focus-visible,
   gap: 8px;
 }
 .btn:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08); /* Sombra más pronunciada al hacer hover */
+  transform: translateY(-2px);
 }
 .btn:active {
   transform: translateY(0);
 }
 .btn-primary {
-  background: var(--brand);
+  background: var(--brand); /* ¡BOTÓN PRINCIPAL EN NARANJA! */
   border-color: var(--brand);
   color: #fff;
   font-weight: 700;
+  box-shadow: 0 10px 20px rgba(255, 123, 3, 0.3); /* Sombra naranja */
 }
 .btn-primary:hover {
   background: var(--brand-600);
+  box-shadow: 0 14px 28px rgba(255, 123, 3, 0.4);
 }
 
 /* ===== Hero ===== */
 .hero {
-  background: radial-gradient(circle at top, #edf8fb 0%, var(--bg) 60%);
+  /* Mantenemos un fondo de agua sutilmente azul para el contexto */
+  background: radial-gradient(circle at top, #e6f8fb 0%, var(--bg) 65%);
   border-top: 0;
 }
 .hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 28px;
+  gap: 40px; /* Más espacio */
   align-items: center;
 }
 .hero-copy .badge {
+  /* El badge usa el azul secundario para dar contexto de "agua" */
   display: inline-block;
   background: rgba(17, 161, 185, 0.12);
-  color: #0b6473;
-  padding: 6px 12px;
+  color: var(--secondary-cian);
+  padding: 7px 14px; /* Más grande */
   border-radius: 9999px;
   font-weight: 600;
-  font-size: 12px;
-  margin-bottom: 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
 }
 .hero-cta {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 .checks {
-  margin-top: 14px;
+  margin-top: 20px;
   padding-left: 20px;
   color: var(--text);
+  font-weight: 500;
 }
 .hero-media {
   min-height: 280px;
 }
 .media-frame {
   background: var(--surface);
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 24px; /* Más redondeado */
   overflow: hidden;
   box-shadow: var(--shadow-md);
   min-height: 280px;
@@ -252,76 +261,88 @@ a:focus-visible,
 .strip-inner {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 .strip-item {
   background: var(--surface);
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  border-radius: 14px;
-  padding: 10px;
-  text-align: center;
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  border-radius: 16px; /* Más redondeado */
+  padding: 12px;
   font-weight: 600;
-  color: #0b6473;
+  color: var(--secondary-cian); /* Mantenemos el cian aquí para un toque de limpieza */
   box-shadow: var(--shadow-sm);
+  text-align: center; /* Aseguramos centrado de texto */
 }
 
 /* ===== Cards / Services ===== */
 .card {
   background: var(--surface);
   border: 1px solid rgba(226, 232, 240, 0.7);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.card:hover {
+  /* Hover sutil con sombra naranja */
+  box-shadow: 0 8px 18px rgba(255, 123, 3, 0.1);
+  transform: translateY(-2px);
 }
 .card-body {
-  padding: 14px;
+  padding: 18px;
   display: grid;
   gap: 8px;
 }
 .services {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 .center {
-  padding: 18px;
+  padding: 24px 18px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
 }
 .center .icon {
-  color: #0b6473;
+  color: var(--brand); /* ¡ÍCONOS DE SERVICIO EN NARANJA PRINCIPAL! */
+  margin-bottom: 6px;
 }
 
 /* ===== Proceso ===== */
 .process {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 .step {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: flex-start;
-  padding: 14px;
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 .step-number {
-  width: 36px;
-  height: 36px;
+  flex-shrink: 0;
+  width: 40px; /* Más grande */
+  height: 40px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   font-weight: 800;
-  color: #075a62;
-  background: #e6f8fb;
-  border: 1px solid #d9eef2;
+  color: var(--secondary-cian); /* Número con acento Cian */
+  background: #d9eef2;
+  border: 2px solid var(--secondary-cian);
 }
 
 /* ===== Carousel (videos / equipos) ===== */
 .carousel {
   display: flex;
-  gap: 14px;
+  gap: 20px;
   overflow-x: auto;
   padding: 6px 2px 4px;
   scroll-snap-type: x mandatory;
@@ -329,42 +350,23 @@ a:focus-visible,
   scroll-behavior: smooth;
 }
 .carousel .tile {
-  min-width: min(360px, 80vw);
-  scroll-snap-align: center;
-}
-.reel-card {
-  display: grid;
-  gap: 8px;
-}
-.reel-frame {
-  border: 1px solid rgba(226, 232, 240, 0.7);
-  border-radius: 16px;
-  overflow: hidden;
-  background: #f8fafc;
-  aspect-ratio: 9 / 16;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.03);
+  /* FIX V3: Configuración de Desktop */
+  width: 30%; /* Usa una proporción relativa en desktop */
+  min-width: 300px; /* Evita que sea demasiado pequeño */
+  max-width: 400px; /* Ancho máximo absoluto para evitar desborde */
+  scroll-snap-align: start; /* Mejor para carruseles grandes */
+  aspect-ratio: 9 / 16; /* Define el aspecto vertical */
+  overflow: hidden; 
+  border-radius: 20px; 
+  box-shadow: var(--shadow-sm);
+  background: #000; 
+  flex-shrink: 0; /* Asegura que no se achique innecesariamente */
 }
 .reel-video {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* desktop: no estira reels */
-  background: #000;
-}
-
-/* ===== Equipos (fotos locales) ===== */
-.equip-frame {
-  background: var(--surface);
-  display: grid;
-  place-items: center;
-}
-.equip-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 14px;
-  max-width: 360px;
+  object-fit: cover;
+  display: block;
 }
 
 /* ===== Forms / Contacto / Calculadora ===== */
@@ -392,8 +394,9 @@ a:focus-visible,
   outline: none;
 }
 .input:focus {
-  border-color: rgba(17, 161, 185, 0.36);
-  box-shadow: 0 0 0 4px rgba(17, 161, 185, 0.06);
+  /* Foco del input en el nuevo color de marca */
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px rgba(255, 123, 3, 0.1);
 }
 .p6 {
   padding: 16px;
@@ -417,65 +420,23 @@ a:focus-visible,
   color: var(--success);
 }
 
-/* ===== FAQ — acordeón (estructura estable) ===== */
-#faq,
-#faq .container {
-  overflow: visible !important;
-}
+/* ===== FAQ — acordeón ===== */
 #faq .accordion {
-  background: var(--surface);
-  border: 1px solid rgba(226, 232, 240, 0.7);
-  border-radius: 16px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow-sm);
-  position: static;
+  border-radius: 18px;
 }
 #faq .accordion-head {
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: transparent;
-  border: 0;
-  padding: 12px 16px;
-  font-weight: 600;
-  cursor: pointer;
+  padding: 16px;
+  font-size: 16px;
 }
 #faq .accordion-head:hover {
-  background: rgba(236, 248, 252, 0.5);
+  background: rgba(255, 123, 3, 0.05); /* Hover suave con color de marca NARANJA */
 }
 #faq .accordion-body {
-  display: block;
-  padding: 10px 16px 16px;
-  border-top: 1px solid rgba(226, 232, 240, 0.6);
-  background: var(--surface);
+  padding: 10px 18px 18px;
 }
-#faq .accordion-body p {
-  margin: 6px 0 8px;
-}
-#faq .accordion-body ul.small {
-  margin: 6px 0 6px 16px;
-}
-#faq .accordion-body .btn {
-  position: static;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 12px;
-  border-radius: 999px;
-  background: var(--surface);
-  border: 1px solid rgba(17, 161, 185, 0.23);
-  box-shadow: 0 6px 18px rgba(17, 161, 185, 0.08);
-}
-#faq .accordion-body .btn.btn-primary {
-  background: var(--brand);
-  border-color: var(--brand);
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(17, 161, 185, 0.14);
-}
-#faq .accordion.reveal,
-#faq .accordion-body.reveal {
-  opacity: 1 !important;
-  transform: none !important;
+.accordion-body .btn.btn-primary {
+  /* Sombra del botón primario en el FAQ, ahora naranja */
+  box-shadow: 0 8px 22px rgba(255, 123, 3, 0.2);
 }
 
 /* ===== Footer ===== */
@@ -494,18 +455,12 @@ a:focus-visible,
 
 /* ===== WhatsApp FAB ===== */
 .wa-fab {
-  position: fixed;
-  right: 16px;
-  bottom: 18px;
-  z-index: 90;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
   background: #25d366;
-  color: #fff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18), 0 8px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25), 0 10px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease-out;
+}
+.wa-fab:hover {
+  transform: scale(1.05) translateY(-2px);
 }
 
 /* ===== Reveal animations (subida y bajada) ===== */
@@ -529,7 +484,7 @@ a:focus-visible,
 }
 
 /* ========================================================= */
-/*                 RESPONSIVE / MOBILE FIXES                 */
+/*                 RESPONSIVE / MOBILE FIXES                 */
 /* ========================================================= */
 @media (max-width: 1024px) {
   .services {
@@ -538,44 +493,40 @@ a:focus-visible,
   .process {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  /* En tablets, permitimos que el tile ocupe más espacio */
+  .carousel .tile {
+    width: 45%; 
+    min-width: 45%;
+  }
 }
 
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
     text-align: center;
   }
-
   .hero-cta {
     justify-content: center;
   }
-
   .checks {
     text-align: left;
     width: max-content;
     margin-left: auto;
     margin-right: auto;
   }
-
   .process {
     grid-template-columns: 1fr;
   }
-
   .grid-2 {
     grid-template-columns: 1fr;
   }
-
   .strip-inner {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  /* header */
-  .site-header .inner {
-    gap: 10px;
-  }
-
   /* servicios en carrusel */
   .services {
     display: flex;
@@ -584,67 +535,23 @@ a:focus-visible,
     scroll-snap-type: x mandatory;
   }
   .services .card {
-    min-width: 78vw;
+    min-width: 80vw;
     scroll-snap-align: center;
   }
-
   /* videos (reels) centrados y con tope */
-  .carousel {
-    gap: 10px;
-  }
   .carousel .tile {
-    min-width: 88vw;
+    /* En móvil, el ancho lo define el viewport width */
+    width: 85vw; 
+    min-width: 85vw; 
+    max-width: none; 
   }
-  .reel-frame {
-    max-width: 88vw;
-    margin: 0 auto;
-  }
-  .reel-video {
-    object-fit: cover; /* en mobile llena */
-  }
-
-  /* imágenes de catálogo / equipos más chicas */
-  .equip-img {
-    max-width: 78vw;
-  }
-
-  /* footer logo más chico */
-  .footer img {
-    max-width: 120px;
-  }
-
-  /* acordeón: más aire para que no parezca pegado */
-  #faq .accordion {
-    margin-bottom: 14px;
-  }
-
-  /* HERO FIX: card e imagen del mismo tamaño */
-  .section.hero {
-    padding-top: 48px;
-    padding-bottom: 44px;
-  }
-
+  /* media frame en móvil */
   .media-frame {
-    max-width: 360px;
-    width: 100%;
-    margin: 0 auto 6px;
-    aspect-ratio: 16 / 9;   /* ← contenedor e imagen misma altura */
-    min-height: 0;          /* anula el 280px de desktop */
-  }
-
-  .media-frame img,
-  .media-frame video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;      /* llena el contenedor */
+    border-radius: 16px;
   }
 }
 
-/* un último corte para teléfonos muy chicos */
 @media (max-width: 480px) {
-  .hero {
-    padding-top: 54px;
-  }
   .hero-cta {
     flex-direction: column;
   }
@@ -652,15 +559,10 @@ a:focus-visible,
     justify-content: center;
   }
   .carousel .tile {
-    min-width: 92vw;
-  }
-  .reel-frame {
-    max-width: 92vw;
+    width: 95vw;
+    min-width: 95vw;
   }
   .services .card {
-    min-width: 88vw;
-  }
-  .footer img {
-    max-width: 110px;
+    min-width: 90vw;
   }
 }
