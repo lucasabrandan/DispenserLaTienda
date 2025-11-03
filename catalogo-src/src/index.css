@@ -1,0 +1,4 @@
+/* src/index.css */
+:root { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+html { color-scheme: light; }   /* fuerza esquema claro del navegador */
+body { margin: 0; }

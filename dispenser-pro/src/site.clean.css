@@ -1,0 +1,323 @@
+/* ===== Corporate Clean – Dispenser La Tienda ===== */
+:root{
+  --brand:#0F9AD3;
+  --brand-600:#0d82b2;
+  --ok:#16a34a;
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --muted:#5f6571;
+  --text:#18212f;
+  --border:#e6edf2;
+  --section:#f5f7f9;
+  --shadow-sm:0 1px 2px rgba(15,154,211,.06);
+  --shadow-md:0 16px 40px rgba(15,154,211,.09);
+}
+
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+
+/* ===== Layout ===== */
+.container{max-width:1160px;margin:0 auto;padding:0 1.25rem}
+.section{padding:4.5rem 0;border-top:1px solid rgba(230,237,242,.4);}
+.section:first-of-type{border-top:0}
+.section-title{margin-bottom:1.4rem}
+.h1{font-size:2.8rem;line-height:1.05;margin:0;letter-spacing:-.02em}
+.h2{font-size:2rem;margin:0 0 .4rem}
+.lead{font-size:1.02rem;color:var(--muted);max-width:44rem}
+.small{font-size:.78rem;color:var(--muted)}
+.muted{color:var(--muted)}
+.mt{margin-top:.75rem}
+.wfull{width:100%}
+
+/* ===== Header ===== */
+.site-header{
+  position:sticky;top:0;z-index:40;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(180%) blur(16px);
+  border-bottom:1px solid rgba(230,237,242,.6);
+}
+.site-header .inner{
+  max-width:1160px;margin:0 auto;
+  padding:.6rem 1.25rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.brand{display:flex;align-items:center;gap:.5rem}
+.logo{height:34px}
+.brand-name{font-weight:700;font-size:1.02rem;color:var(--text)}
+.nav{margin-left:auto;display:none;gap:1.1rem}
+@media (min-width:820px){ .nav{display:flex} }
+.nav a{font-size:.83rem;color:var(--muted)}
+.nav a:hover{color:var(--text)}
+
+/* ===== Buttons ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:.35rem;
+  padding:.6rem 1.1rem;
+  border-radius:1rem;
+  border:1px solid rgba(0,0,0,0);
+  background:#edf3f6;
+  color:var(--text);
+  font-weight:500;
+  transition:.15s ease;
+  font-size:.85rem;
+}
+.btn:hover{background:#e1eaf0}
+.btn-primary{
+  background:var(--brand);
+  border-color:transparent;
+  color:#fff;
+  font-weight:600;
+  box-shadow:0 8px 22px rgba(15,154,211,.25);
+}
+.btn-primary:hover{background:var(--brand-600)}
+.btn-pill{border-radius:999px}
+
+/* ===== Hero ===== */
+.hero{
+  background:linear-gradient(180deg,#f8fdff 0%, #ffffff 58%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.05fr .9fr;gap:2.25rem;
+  align-items:center;
+}
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+}
+.hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.1rem}
+.badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  background:#def3fb;
+  color:#054761;
+  border-radius:999px;
+  padding:.4rem .75rem;
+  font-size:.7rem;
+  font-weight:600;
+}
+.checks{list-style:none;padding:0;margin:1.2rem 0 0 0;display:grid;gap:.35rem}
+.checks li{display:flex;gap:.4rem;align-items:center;font-size:.83rem;color:#1f2937}
+.checks li::before{
+  content:"✓";color:var(--brand);font-weight:700;font-size:.8rem;
+}
+.media-frame{
+  background:#edf6ff;
+  border:1px solid rgba(134,182,209,.25);
+  border-radius:1.5rem;
+  overflow:hidden;
+  box-shadow:var(--shadow-md);
+  min-height:250px;
+}
+.media-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.aspect-video{aspect-ratio:16/9}
+
+/* ===== Strip ===== */
+.strip{
+  background:var(--section);
+  border-top:1px solid rgba(230,237,242,.7);
+  border-bottom:1px solid rgba(230,237,242,.7);
+}
+.strip-inner{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1rem;padding:1.1rem 0;
+}
+.strip-item{
+  background:#fff;
+  border:1px solid rgba(230,237,242,.5);
+  border-radius:1rem;
+  padding:.6rem .85rem;
+  text-align:center;
+  font-weight:600;
+  color:#0b617e;
+  box-shadow:0 1px 0 rgba(0,0,0,.018);
+}
+
+/* ===== Services ===== */
+.services{
+  display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+}
+.card{
+  background:var(--surface);
+  border:1px solid rgba(230,237,242,.7);
+  border-radius:1.2rem;
+  box-shadow:var(--shadow-sm);
+}
+.card.service{
+  padding:1.1rem 1.05rem;
+  display:grid;gap:.35rem;
+}
+.card-title{font-weight:700}
+.service .muted{font-size:.8rem}
+.icon{
+  width:38px;height:38px;border-radius:1rem;
+  background:rgba(15,154,211,.12);
+  display:grid;place-items:center;
+  color:var(--brand);
+  margin-bottom:.4rem;
+}
+
+/* ===== Process ===== */
+.process{
+  display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+.step{
+  display:flex;gap:.9rem;align-items:flex-start;
+  padding:1rem 1rem 1.05rem;
+  background:#fff;
+  border:1px solid rgba(230,237,242,.7);
+  border-radius:1.1rem;
+}
+.step-number{
+  width:32px;height:32px;border-radius:999px;
+  display:grid;place-items:center;
+  background:#e4f3fa;
+  color:#055474;
+  font-weight:700;
+}
+
+/* ===== Carousel (casos) ===== */
+.carousel{
+  display:flex;gap:1rem;overflow-x:auto;padding:.4rem 0 .2rem;
+  scroll-snap-type:x mandatory;
+}
+.carousel .tile{
+  min-width:min(360px,80vw);
+  background:#fff;
+  border:1px solid rgba(230,237,242,.7);
+  border-radius:1rem;
+  overflow:hidden;
+  scroll-snap-align:start;
+}
+.reel-video{
+  width:100%;height:260px;object-fit:cover;display:block;background:#000;
+}
+
+/* ===== FAQ ===== */
+.accordion{
+  background:#fff;
+  border:1px solid rgba(230,237,242,.7);
+  border-radius:1rem;
+  margin-bottom:1rem;
+}
+.accordion-head{
+  width:100%;text-align:left;
+  background:#fff;
+  border:0;
+  padding:.85rem 1rem;
+  font-weight:600;
+  display:flex;gap:.5rem;align-items:center;
+  cursor:pointer;
+}
+.accordion-head:hover{background:#f4f7fa}
+.accordion-body{
+  padding:0 1rem 1rem 1rem;
+  border-top:1px solid rgba(230,237,242,.6);
+}
+.accordion-body p{margin:.6rem 0}
+.accordion-body ul{margin:.35rem 0 0 1.1rem;font-size:.8rem;color:var(--muted)}
+
+/* ===== Contact ===== */
+.contact-grid{
+  display:grid;gap:1.6rem;grid-template-columns:1fr 1fr;
+}
+@media (max-width:880px){ .contact-grid{grid-template-columns:1fr} }
+.contact-grid .card{padding:1.15rem}
+
+/* ===== Footer ===== */
+.footer{
+  display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;
+  font-size:.78rem;
+}
+
+/* ===== Floating WA ===== */
+.wa-fab{
+  position:fixed;right:1.1rem;bottom:1rem;z-index:50;
+  width:52px;height:52px;border-radius:999px;
+  background:#25D366;color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.22);
+}
+.wa-fab:hover{filter:brightness(1.02)}
+
+/* ===== Inputs ===== */
+.label{font-size:.78rem;font-weight:600;margin-bottom:.25rem;display:block}
+.input{
+  width:100%;
+  border:1px solid rgba(230,237,242,.9);
+  border-radius:1rem;
+  padding:.6rem .7rem;
+  background:#fff;
+  font-size:.83rem;
+}
+.input:focus{outline:2px solid rgba(15,154,211,.18);outline-offset:2px}
+
+/* ===== Helpers ===== */
+.p6{padding:1rem}
+@media (max-width:600px){
+  .h1{font-size:2.25rem}
+  .section{padding:3.5rem 0}
+  .hero-cta{flex-direction:column;align-items:flex-start}
+  .carousel .tile{min-width:88vw}
+}
+
+
+/* ===== Animaciones suaves y profesionales ===== */
+
+/* Estado inicial */
+.reveal, .reveal-left, .reveal-right {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+/* Direcciones de entrada */
+.reveal { transform: translateY(40px); }
+.reveal-left { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+
+/* Al aparecer */
+.revealed {
+  opacity: 1;
+  transform: translate(0,0);
+}
+
+/* Animación de elementos en cascada */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Suaviza entrada de imágenes */
+img.reveal, video.reveal {
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Asegura fluidez en scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* ===== Animaciones Reveal (entrada y salida) ===== */
+.reveal, .reveal-left, .reveal-right {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-left { transform: translateX(-60px); }
+.reveal-right { transform: translateX(60px); }
+
+.revealed {
+  opacity: 1;
+  transform: translate(0,0);
+}
+
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+.reveal-delay-5 { transition-delay: .5s; }
