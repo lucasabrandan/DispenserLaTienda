@@ -545,9 +545,21 @@ a:focus-visible,
     min-width: 85vw; 
     max-width: none; 
   }
-  /* media frame en móvil */
+  /* FIX HERO MOBILE: Asegurar que el marco multimedia ocupe el 100% del contenedor y anular min-height */
   .media-frame {
     border-radius: 16px;
+    width: 100%; 
+    max-width: none; /* <--- Esto anula cualquier restricción de ancho fijo */
+    margin: 16px auto 6px;
+    aspect-ratio: 16 / 9;
+    min-height: 0; /* Anular el min-height de desktop */
+  }
+  /* Asegurar que la imagen dentro del media-frame respete el contenedor */
+  .media-frame img,
+  .media-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
